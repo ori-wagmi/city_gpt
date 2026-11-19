@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ee">
+  <title>HL Names City</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+<svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="city-icon" viewBox="0 0 24 24"><path d="m3 14 9-5 9 5-9 5zM3 18l9 5 9-5M7 12V6l5-3 5 3v6M12 3v6"/></symbol>
+  <symbol id="wallet-icon" viewBox="0 0 24 24"><path d="M20 8V6a2 2 0 0 0-2-2H6a3 3 0 0 0 0 6h14a1 1 0 0 1 1 1v8H6a3 3 0 0 1-3-3V7m18 6h-5a2 2 0 0 0 0 4h5"/></symbol>
+  <symbol id="plus-icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="minus-icon" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="reset-icon" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2 6M4 5v6h6"/></symbol>
+  <symbol id="focus-icon" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5m6-3h4m-2-2v4"/></symbol>
+  <symbol id="map-icon" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3zm6-3v15m6-12v15"/></symbol>
+</svg>
+<header>
+  <div class="brand"><span class="brand-icon"><svg><use href="#city-icon"/></svg></span><h1>HL Names City</h1></div>
+  <div class="account"><span id="address" hidden></span><button id="wallet" class="primary"><svg><use href="#wallet-icon"/></svg> Connect wallet</button></div>
+</header>
+<main>
+  <aside aria-label="City controls">
+    <section>
+      <div class="section-caption">World builder</div>
+      <h2>Demo population</h2>
+      <p class="intro">Choose how many generated buildings fill the city.</p>
+      <div id="presets" role="group" aria-label="Demo population">
+        <button data-count="0">0</button><button data-count="100">100</button>
+        <button data-count="1000">1,000</button><button data-count="10000">10,000</button>
+      </div>
+      <div class="actions">
+        <button id="add"><svg><use href="#plus-icon"/></svg>Add landmass</button>
+        <button id="regenerate"><svg><use href="#reset-icon"/></svg>Regenerate map</button>
+      </div>
+    </section>
+    <section class="land-section">
+      <label for="islands" class="section-caption">Selected landmass</label>
+      <select id="islands" aria-describedby="island-landmark"></select>
+      <span id="island-landmark"></span>
+      <button id="regenerate-island"><svg><use href="#reset-icon"/></svg>Regenerate landmass</button>
+    </section>
+    <section class="names-section">
+      <div class="names-heading"><h2>Your .hl names</h2><button id="refresh" class="icon-button" title="Refresh names" aria-label="Refresh names" hidden><svg><use href="#reset-icon"/></svg></button></div>
+      <div id="names" aria-live="polite"></div>
+    </section>
+    <div class="sidebar-footer"><span>Saved in this browser</span><button id="reset" class="text-button">Reset demo</button></div>
+  </aside>
+  <div class="map-panel">
+    <div class="map" id="map">
+      <canvas tabindex="0" aria-label="Isometric city map. Drag or use arrow keys to pan, and scroll to zoom."></canvas>
+      <div class="map-heading"><span class="map-heading-icon"><svg><use href="#map-icon"/></svg></span><div><strong>City map</strong><span id="landmass-count"></span></div></div>
+      <div id="notice" role="status"></div>
+      <div class="zoom" aria-label="Map navigation">
+        <button id="overview" title="Fit entire world" aria-label="Fit entire world"><svg><use href="#focus-icon"/></svg></button>
+        <button id="zoom-in" title="Zoom in" aria-label="Zoom in"><svg><use href="#plus-icon"/></svg></button>
+        <button id="zoom-out" title="Zoom out" aria-label="Zoom out"><svg><use href="#minus-icon"/></svg></button>
+      </div>
+      <div class="map-hint" id="map-hint">Drag to pan <span>·</span> Scroll to zoom</div>
+      <div class="placement-bar" hidden id="placement-bar"><span id="placing"></span><button id="cancel">Cancel</button></div>
+    </div>
+    <footer class="map-footer">
+      <div><i class="legend demo"></i><span id="demo-total"></span></div>
+      <div><i class="legend plot"></i><span id="open-total"></span></div>
+      <div><i class="legend owned"></i><span id="real-total"></span></div>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
